@@ -3,3 +3,4 @@
 /dist
 sdk.js
 deploy.sh
+yarn-error.log
