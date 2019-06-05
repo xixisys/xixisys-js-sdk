@@ -15,7 +15,9 @@ class ServerError extends Error {
   }
 }
 
-const api = ({ apiKey, prefixUrl = 'https://dlfrsthy47.execute-api.cn-north-1.amazonaws.com.cn/production' }) => {
+const api = apiKey => {
+  const prefixUrl = 'https://dlfrsthy47.execute-api.cn-north-1.amazonaws.com.cn/production'
+
   return ky.create({
     retry: 1,
     prefixUrl: prefixUrl,
@@ -103,7 +105,7 @@ class XiXisys {
 
 const createInstance = () => {
   const sdk = apiKey => new XiXisys(apiKey)
-  sdk.ComplianceHtml = (key, options) => sdk(key).ComplianceHtml(options)
+  sdk.ComplianceHtml = (key, options) => createInstance()(key).ComplianceHtml(options)
   return sdk
 }
 
