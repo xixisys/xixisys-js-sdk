@@ -42,11 +42,8 @@ const selector = id => {
 }
 
 class XiXisys {
-  constructor({
-    prefixUrl,
-    apiKey,
-  }) {
-    this.api = api({ apiKey, prefixUrl })
+  constructor(apiKey) {
+    this.api = api(apiKey)
   }
 
   ComplianceHtml({
@@ -104,6 +101,15 @@ class XiXisys {
   }
 }
 
-const createInstance = () => options => new XiXisys(options)
+const createInstance = () => {
+  const sdk = apiKey => new XiXisys(apiKey)
+  sdk.ComplianceHtml = (key, options) => sdk(key).ComplianceHtml(options)
+  return sdk
+}
 
 export default createInstance()
+
+export {
+  CasNotFoundError,
+  ServerError,
+}
