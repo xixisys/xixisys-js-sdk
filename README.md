@@ -14,7 +14,7 @@ $ yarn add xixisys-js-sdk
 
 ## 使用
 
-```
+```js
 import XiXisys from 'xixisys-sdk-js'
 
 // 生成 CAS 号为 50-00-0 的合规数据到页面 #compliance-html 中
@@ -36,7 +36,7 @@ XiXisys.ComplianceHtml(
 
 如果下载 sdk.js，可以使用
 
-```
+```html
 <script src="./sdk.js"></script>
 <script>
     // 需要
