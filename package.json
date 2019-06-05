@@ -1,0 +1,26 @@
+{
+  "name": "xixisys-js-sdk",
+  "version": "1.0.0",
+  "description": "JS-SDK for XiXisys API",
+  "repository": "https://github.com/xixisys/xixisys-js-sdk",
+  "author": "billyct",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^1.0.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "terser": "^4.0.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "files": [
+    "index.js",
+    "sdk.js"
+  ],
+  "dependencies": {
+    "ky": "^0.11.0",
+    "whatwg-fetch": "^3.0.0"
+  }
+}
