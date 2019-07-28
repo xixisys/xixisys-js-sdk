@@ -1,13 +1,15 @@
 import XiXisys from 'xixisys-js-sdk'
 
-// const sdk = XiXisys('')
-//
-// sdk.ComplianceHtml({
-//   id: "#compliance-html",
-//   cas: "115-07-1",
-// })
+// api key for test
+const sdk = XiXisys('ivjvSXVHbz7Sk8R6tFLu36y3Gqvpv8AOa0OztMwM')
 
-XiXisys.ComplianceHtml('', {
-  id: "#compliance-html",
-  cas: "115-07-1",
+sdk.ComplianceHtml({
+  id: '#compliance-html',
+  cas: '115-07-1',
+})
+
+sdk.SdsHtml({
+  id: '#sds-html',
+  cas: '110-46-3',
+  edition: 'cn',
 })
