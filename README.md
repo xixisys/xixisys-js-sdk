@@ -89,6 +89,45 @@ Type: `object`
 
 错误返回方法
 
+### XiXisys.SdsHtml(key, options)
+
+生成一份合规数据
+
+#### options
+Type: `object`
+
+##### id
+
+类型：`string | Element`
+
+显示「SDS」的容器id
+
+##### cas
+
+类型: `string`
+
+需要查询的 CAS 号
+
+##### edition
+
+类型: `string`
+
+需要的 SDS 版本，`ghs` 或者 `cn`
+
+##### cssHref
+
+类型: `string`
+
+覆盖「SDS」的样式链接
+
+##### error
+
+类型: `Function`
+
+默认: `console.error`
+
+错误返回方法
+
 ### XiXisys.CasNotFoundError
 
 当 CAS 号找不到的时候返回
