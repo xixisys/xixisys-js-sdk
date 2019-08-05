@@ -125,7 +125,13 @@ class XiXisys {
 
       // 传递 cssHref 给 iframe
       frame.onload = () => {
-        frame.contentWindow.postMessage({xixisys: {cssHref}}, '*')
+        const origin = window.location.origin
+        frame.contentWindow.postMessage({
+          xixisys: {
+            cssHref,
+            origin,
+          }
+        }, '*')
       }
 
       // 默认样式
