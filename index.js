@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 import ky, { HTTPError } from 'ky';
 
-class CasNotFoundError extends Error{
+class CasNotFoundError extends Error {
   constructor() {
     super('Cas not found')
     this.name = 'CasNotFoundError'
@@ -53,6 +53,7 @@ class XiXisys {
     cas,
     edition = 'ghs',
     cssHref,
+    success,
     error = console.error
   }) {
     (async () => {
@@ -63,7 +64,10 @@ class XiXisys {
           }
         }).json()
 
-        this.createFrame(id, cssHref, data);
+        await this.createFrame(id, cssHref, data)
+
+        success()
+
         return this
       } catch (e) {
         let err = this.makeError(e)
@@ -76,6 +80,7 @@ class XiXisys {
      id,
      cas,
      cssHref,
+     success,
      error = console.error,
    }) {
     (async () => {
@@ -84,7 +89,9 @@ class XiXisys {
           searchParams: { cas },
         }).json()
 
-        this.createFrame(id, cssHref, data);
+        this.createFrame(id, cssHref, data)
+
+        success()
 
         return this
       } catch (e) {
@@ -109,36 +116,40 @@ class XiXisys {
   }
 
   createFrame(id, cssHref, data) {
-    // create frame
-    const element = selector(id)
+    return new Promise(resolve => {
+      // create frame
+      const element = selector(id)
 
-    if (element) {
-      const frame = document.createElement('iframe')
+      if (element) {
+        const frame = document.createElement('iframe')
 
-      // 通过 postMessage 让 iframe 100% height
-      window.addEventListener('message', e => {
-        const {xixisys: {height}} = e.data
-        if (height) {
-          frame.height = height
-        }
-      })
-
-      // 传递 cssHref 给 iframe
-      frame.onload = () => {
-        const origin = window.location.origin
-        frame.contentWindow.postMessage({
-          xixisys: {
-            cssHref,
-            origin,
+        // 通过 postMessage 让 iframe 100% height
+        window.addEventListener('message', e => {
+          const {xixisys: {height}} = e.data
+          if (height) {
+            frame.height = height
           }
-        }, '*')
-      }
+        })
 
-      // 默认样式
-      frame.style = 'border:none;width:100%;'
-      frame.src = data
-      element.appendChild(frame)
-    }
+        // 传递 cssHref 给 iframe
+        frame.onload = () => {
+          const origin = window.location.origin
+          frame.contentWindow.postMessage({
+            xixisys: {
+              cssHref,
+              origin,
+            }
+          }, '*')
+
+          resolve()
+        }
+
+        // 默认样式
+        frame.style = 'border:none;width:100%;'
+        frame.src = data
+        element.appendChild(frame)
+      }
+    })
   }
 }
 
