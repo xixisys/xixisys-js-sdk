@@ -2872,7 +2872,7 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 xixisys-js-sdk@../:
-  version "1.0.1"
+  version "1.1.2"
   dependencies:
     ky "^0.11.0"
     whatwg-fetch "^3.0.0"
