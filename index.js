@@ -125,9 +125,11 @@ class XiXisys {
 
         // 通过 postMessage 让 iframe 100% height
         window.addEventListener('message', e => {
-          const {xixisys: {height}} = e.data
-          if (height) {
-            frame.height = height
+          if (e.data.xixisys) {
+            const {xixisys: {height}} = e.data
+            if (height) {
+              frame.height = height
+            }
           }
         })
 
