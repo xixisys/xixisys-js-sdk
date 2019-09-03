@@ -70,7 +70,8 @@ class XiXisys {
 
         return this
       } catch (e) {
-        let err = this.makeError(e)
+        let err = await this.makeError(e)
+
         error(err)
       }
     })()
@@ -95,7 +96,7 @@ class XiXisys {
 
         return this
       } catch (e) {
-        let err = await this.makeError(e);
+        let err = await this.makeError(e)
 
         error(err)
       }
